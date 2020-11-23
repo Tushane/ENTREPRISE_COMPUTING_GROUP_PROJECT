@@ -158,6 +158,47 @@
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
+    <Content Include="Css\style.css" />
+    <Content Include="Cart.aspx" />
+    <Content Include="Checkout.aspx" />
+    <Content Include="Master.master" />
+    <Content Include="Product.aspx" />
+    <Content Include="img\slider-3.jpg" />
+    <Content Include="img\category-2.jpg" />
+    <Content Include="img\product-3.jpg" />
+    <Content Include="img\product-2.jpg" />
+    <Content Include="img\category-3.jpg" />
+    <Content Include="img\slider-2.jpg" />
+    <Content Include="img\norton.svg" />
+    <Content Include="img\category-1.jpg" />
+    <Content Include="img\product-1.jpg" />
+    <Content Include="img\slider-1.jpg" />
+    <Content Include="img\payment-method.png" />
+    <Content Include="img\product-5.jpg" />
+    <Content Include="img\category-4.jpg" />
+    <Content Include="img\category-5.jpg" />
+    <Content Include="img\product-4.jpg" />
+    <Content Include="img\category-7.jpg" />
+    <Content Include="img\product-6.jpg" />
+    <Content Include="img\product-7.jpg" />
+    <Content Include="img\category-6.jpg" />
+    <Content Include="img\brand-6.png" />
+    <Content Include="img\brand-5.png" />
+    <Content Include="img\brand-4.png" />
+    <Content Include="img\brand-1.png" />
+    <Content Include="img\brand-3.png" />
+    <Content Include="img\brand-2.png" />
+    <Content Include="img\review-1.jpg" />
+    <Content Include="img\godaddy.svg" />
+    <Content Include="img\review-2.jpg" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\review-3.jpg" />
+    <Content Include="img\product-10.jpg" />
+    <Content Include="img\category-8.jpg" />
+    <Content Include="img\product-9.jpg" />
+    <Content Include="img\product-8.jpg" />
+    <Content Include="img\ssl.svg" />
+    <Content Include="js\main.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -206,9 +247,36 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master.master.cs">
+      <DependentUpon>Master.master</DependentUpon>
+    </Compile>
+    <Compile Include="Master.master.designer.cs">
+      <DependentUpon>Master.master</DependentUpon>
+    </Compile>
+    <Compile Include="Product.aspx.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Product.aspx.designer.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Css\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -245,6 +313,11 @@
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

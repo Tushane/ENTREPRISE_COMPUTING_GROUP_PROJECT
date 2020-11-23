@@ -1,0 +1,20 @@
+﻿<Properties StartupConfiguration="{874B8358-1795-473E-8F8F-AC42CCB6E664}|">
+  <MonoDevelop.Ide.ItemProperties.EC__GROUP__PROJECT PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="EC_GROUP_PROJECT" expanded="True">
+            <Node name="EC_GROUP_PROJECT" expanded="True" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

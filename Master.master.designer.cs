@@ -11,8 +11,8 @@
 namespace eStore {
 	
 	
-	public partial class Default {
+	public partial class Master {
 		
-		protected System.Web.UI.WebControls.Content body;
+		protected System.Web.UI.WebControls.ContentPlaceHolder bodyContent;
 	}
 }

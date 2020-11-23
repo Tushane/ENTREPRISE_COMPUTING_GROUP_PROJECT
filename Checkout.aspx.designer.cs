@@ -11,7 +11,7 @@
 namespace eStore {
 	
 	
-	public partial class Default {
+	public partial class Checkout {
 		
 		protected System.Web.UI.WebControls.Content body;
 	}
