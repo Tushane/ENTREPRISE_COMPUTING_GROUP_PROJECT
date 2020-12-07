@@ -27,7 +27,7 @@ namespace EStore2.CART_DATA
                 PageElementGenerator peg = new PageElementGenerator(del_button);
 
                 //retrieving the breakout elements 
-                element_list = peg.generate_cart_summary_product_breakout(cookie.Value);
+                element_list = peg.generate_cart_summary_product_breakout(cookie.Value, del_button);
 
                 //retrieving and updating the cart summary section
                 PlaceHolder1.Controls.Add(peg.generate_cart_summary(cookie.Value));

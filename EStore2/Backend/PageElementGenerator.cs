@@ -169,7 +169,7 @@ namespace EStore2.Backend
             return amt.ToString();
         }
 
-        public List<System.Web.UI.HtmlControls.HtmlGenericControl> generate_cart_summary_product_breakout(string user_id)
+       public List<System.Web.UI.HtmlControls.HtmlGenericControl> generate_cart_summary_product_breakout(string user_id, Button del_from_cart)
         {
             Process_Executor exec = new Process_Executor();
             List<System.Web.UI.HtmlControls.HtmlGenericControl> all_prod_display = new List<System.Web.UI.HtmlControls.HtmlGenericControl>();
@@ -198,9 +198,9 @@ namespace EStore2.Backend
                 avail_amt_host.Attributes.Add("runat", "server");
 
                 //configuring the delete from cart button
-                this.delete_from_cart.Text = "DELETE>>";
-                this.delete_from_cart.CssClass = "btn btn-default";
-                this.delete_from_cart.ID = "cart" + i.ToString() + "_" + data.get_cart_id();
+                del_from_cart.Text = "DELETE>>";
+                del_from_cart.CssClass = "btn btn-default";
+                del_from_cart.ID = "cart" + i.ToString() + "_" + data.get_cart_id();
 
 
                 newdiv.InnerHtml = prod_image + prod_name + price + description;
@@ -227,7 +227,7 @@ namespace EStore2.Backend
                 avail_host.Controls.Add(avail_amt_host);
                 newdiv.Controls.Add(avail_host);
                 newdiv.Controls.Add(quan_host);
-                newdiv.Controls.Add(this.delete_from_cart);
+                newdiv.Controls.Add(del_from_cart);
 
                 all_prod_display.Add(newdiv);//adding each product element to the list 
             }
