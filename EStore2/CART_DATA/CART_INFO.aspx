@@ -34,7 +34,7 @@
                 <div>
                     <hr />
                     <div>
-                        <asp:Button runat="server" Text ="CHECK OUT" CssClass="btn btn-default" OnClick="check_out_cart" />
+                        <asp:Button runat="server" type="submit" ID="submit" Text ="CHECK OUT" CssClass="btn btn-default" OnClick="check_out_cart" />
                         <asp:Button runat="server" Text ="CLEAR CART" CssClass="btn btn-default" OnClick="clear_cart"/>
                     </div>
                 </div>

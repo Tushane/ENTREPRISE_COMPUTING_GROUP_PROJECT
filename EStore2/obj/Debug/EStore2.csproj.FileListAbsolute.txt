@@ -204,3 +204,12 @@ C:\Users\tusha\Source\Repos\Tushane\ENTREPRISE_COMPUTING_GROUP_PROJECT\EStore2\o
 C:\Users\tusha\Source\Repos\Tushane\ENTREPRISE_COMPUTING_GROUP_PROJECT\EStore2\obj\Debug\EStore2.csproj.CopyComplete
 C:\Users\tusha\Source\Repos\Tushane\ENTREPRISE_COMPUTING_GROUP_PROJECT\EStore2\obj\Debug\EStore2.dll
 C:\Users\tusha\Source\Repos\Tushane\ENTREPRISE_COMPUTING_GROUP_PROJECT\EStore2\obj\Debug\EStore2.pdb
+C:\Users\tusha\source\repos\Tushane\ENTREPRISE_COMPUTING_GROUP_PROJECT\EStore2\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\tusha\source\repos\Tushane\ENTREPRISE_COMPUTING_GROUP_PROJECT\EStore2\bin\Stripe.net.dll
+C:\Users\tusha\source\repos\Tushane\ENTREPRISE_COMPUTING_GROUP_PROJECT\EStore2\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\tusha\source\repos\Tushane\ENTREPRISE_COMPUTING_GROUP_PROJECT\EStore2\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\tusha\source\repos\Tushane\ENTREPRISE_COMPUTING_GROUP_PROJECT\EStore2\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\tusha\source\repos\Tushane\ENTREPRISE_COMPUTING_GROUP_PROJECT\EStore2\bin\Stripe.net.pdb
+C:\Users\tusha\source\repos\Tushane\ENTREPRISE_COMPUTING_GROUP_PROJECT\EStore2\bin\Stripe.net.xml
+C:\Users\tusha\source\repos\Tushane\ENTREPRISE_COMPUTING_GROUP_PROJECT\EStore2\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\tusha\source\repos\Tushane\ENTREPRISE_COMPUTING_GROUP_PROJECT\EStore2\bin\System.Threading.Tasks.Extensions.xml

@@ -15,6 +15,7 @@ namespace EStore2.Backend.Data_Models
         private string purchased_date;
         private string product_image;
         private decimal unit_cost;
+        private string transaction_id; 
 
         public CART_INFORMATION(string id, string product_name, int quantity_amount, decimal payment, string currency, string purchased_date, string product_image, decimal unit_cost)
         {
@@ -28,7 +29,25 @@ namespace EStore2.Backend.Data_Models
             this.unit_cost = unit_cost;
         }
 
+        public CART_INFORMATION(string id, string product_name, int quantity_amount, decimal payment, string currency, string purchased_date, string product_image, decimal unit_cost, string temp)
+        {
+            this.id = id;
+            this.product_name = product_name;
+            this.quantity_amount = quantity_amount;
+            this.payment = payment;
+            this.currency = currency;
+            this.purchased_date = purchased_date;
+            this.product_image = product_image;
+            this.unit_cost = unit_cost;
+            this.transaction_id = temp;
+        }
+
         //getters
+
+        public string get_transaction_id()
+        {
+            return this.transaction_id;
+        }
         public string get_cart_id()
         {
             return id;

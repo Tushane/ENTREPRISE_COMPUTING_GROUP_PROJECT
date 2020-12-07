@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Stripe;
+using Stripe.Checkout;
 
 namespace EStore2.CART_DATA
 {
@@ -52,6 +54,7 @@ namespace EStore2.CART_DATA
 
             }
 
+
         }
 
         protected void clear_cart(object sender, EventArgs e)
@@ -71,7 +74,7 @@ namespace EStore2.CART_DATA
 
         protected void check_out_cart(object sender, EventArgs e)
         {
-            
+            Response.Redirect("~/CART_DATA/CONFIRM_ORDER");
         }
 
         protected void delete_from_cart(object sender, EventArgs e)
@@ -94,5 +97,7 @@ namespace EStore2.CART_DATA
                 Response.Redirect("~/CART_DATA/CART_INFO");
             }
         }
-    }
+
+
+        }
 }

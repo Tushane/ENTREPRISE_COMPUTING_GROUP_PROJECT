@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-
+using Stripe;
+using Stripe.Checkout;
 
 namespace EStore2.Backend
 {
@@ -176,30 +177,52 @@ namespace EStore2.Backend
             if(type == "his")
             {
                 query = "SELECT * FROM [dbo].[VIEW_CART_HISTORY]('" + userid + "')";
+
+                //retrieving data 
+                reader = con.ExecuteQueries(query, userid);
+
+                //reading data
+                while (reader.Read())
+                {
+                    //storing information into a class model 
+                    CART_INFORMATION cart = new CART_INFORMATION
+                                                (
+                                                    reader[0].ToString(), reader[1].ToString(),
+                                                    int.Parse(reader[2].ToString()),
+                                                    decimal.Parse(reader[3].ToString()), reader[4].ToString(), reader[5].ToString(),
+                                                   reader[6].ToString(), decimal.Parse(reader[7].ToString()), reader[8].ToString()
+                                                );
+
+                    //adding the model to a list of models
+                    cart_list.Add(cart);
+                }
             }
             else
             {
                 query = "SELECT * FROM [dbo].[VIEW_CART]('" + userid + "')";
+
+                //retrieving data 
+                reader = con.ExecuteQueries(query, userid);
+
+                //reading data
+                while (reader.Read())
+                {
+                    //storing information into a class model 
+                    CART_INFORMATION cart = new CART_INFORMATION
+                                                (
+                                                    reader[0].ToString(), reader[1].ToString(),
+                                                    int.Parse(reader[2].ToString()),
+                                                    decimal.Parse(reader[3].ToString()), reader[4].ToString(), reader[5].ToString(),
+                                                   reader[6].ToString(), decimal.Parse(reader[7].ToString())
+                                                );
+
+                    //adding the model to a list of models
+                    cart_list.Add(cart);
+                }
             }
 
-            //retrieving data 
-            reader = con.ExecuteQueries(query, userid);
 
-            //reading data
-            while (reader.Read())
-            {
-                //storing information into a class model 
-                CART_INFORMATION cart = new CART_INFORMATION
-                                            (
-                                                reader[0].ToString(), reader[1].ToString(),
-                                                int.Parse(reader[2].ToString()),
-                                                decimal.Parse(reader[3].ToString()), reader[4].ToString(), reader[5].ToString(),
-                                               reader[6].ToString(), decimal.Parse(reader[7].ToString())
-                                            );
-
-                //adding the model to a list of models
-                cart_list.Add(cart);
-            }
+            reader.Close();
 
             con.closeSqlData();//closing sql data stream
 
@@ -435,6 +458,19 @@ namespace EStore2.Backend
 
             return response;
         }
+
+
+        public string complete_order(string user_id, string tran_id)
+        {
+            string response = "";
+            Database_Connection con = new Database_Connection();
+            string variables = "@USERID;" +  user_id + "-@TRANSACTION_NUMER;" + tran_id;
+            response = con.ExecuteProcedure("COMPLETE_ORDER", variables, user_id);//retreiving the response
+
+            return response;//returning the response
+        }
+
+
 
     }
 }
