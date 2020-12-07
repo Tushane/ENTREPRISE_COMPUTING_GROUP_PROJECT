@@ -25,6 +25,61 @@ namespace EStore2.Backend
             this.lessen_quantity = lessen_quantity;
         }
 
+
+        public PageElementGenerator()
+        {
+            this.add_to_cart = new Button();
+            this.clear_cart = new Button();
+            this.delete_from_cart = new Button();
+            this.add_quantity = new Button();
+            this.lessen_quantity = new Button();
+        }
+
+        public void set_add_to_cart(Button temp)
+        {
+            this.add_to_cart = temp;
+        }
+
+        public void set_delete_from_cart(Button temp)
+        {
+            this.delete_from_cart = temp;
+        }
+
+        public void set_clear_cart(Button temp)
+        {
+            this.clear_cart = temp;
+        }
+
+        public void set_lessen_qauntity(Button temp)
+        {
+            this.lessen_quantity = temp;
+        }
+
+        public void set_add_qauntity(Button temp)
+        {
+            this.add_quantity = temp;
+        }
+
+        public Button get_add_to_cart()
+        {
+            return this.add_to_cart;
+        }
+
+        public Button get_delete_from_cart()
+        {
+            return this.delete_from_cart;
+        }
+
+        public Button get_lessen_quantity()
+        {
+            return this.lessen_quantity;
+        }
+
+        public Button get_add_qauntity()
+        {
+            return this.add_quantity;
+        }
+
         public PageElementGenerator(Button delete_from_cart)
         {
          
@@ -39,7 +94,21 @@ namespace EStore2.Backend
             List<System.Web.UI.HtmlControls.HtmlGenericControl> all_prod_display = new List<System.Web.UI.HtmlControls.HtmlGenericControl>();
             List<PRODUTCT_DATA> data_list = exec.retrieve_product(search, user_id);
 
-            foreach (PRODUTCT_DATA data in data_list) {
+            foreach (PRODUTCT_DATA data in data_list)
+            {
+               
+                all_prod_display.Add(generate_product(data));//adding each product element to the list 
+            }
+
+
+            return all_prod_display;//returning all the product that will be displaying 
+
+        }
+        public System.Web.UI.HtmlControls.HtmlGenericControl generate_product(PRODUTCT_DATA data)
+        {
+            Process_Executor exec = new Process_Executor();
+            List<System.Web.UI.HtmlControls.HtmlGenericControl> all_prod_display = new List<System.Web.UI.HtmlControls.HtmlGenericControl>();          
+                      
 
                 System.Web.UI.HtmlControls.HtmlGenericControl newdiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
                 newdiv.Attributes.Add("Style", "border:1px; border-color:blue; padding-bottom:2%");
@@ -106,10 +175,7 @@ namespace EStore2.Backend
                 newdiv.Controls.Add(quan_host);
                 newdiv.Controls.Add(add_to_cart);
 
-                all_prod_display.Add(newdiv);//adding each product element to the list 
-            }
-
-            return all_prod_display;//returning all the product that will be displaying 
+            return newdiv;
         }
 
         //creating the elements for the cart product summary 
@@ -125,6 +191,7 @@ namespace EStore2.Backend
                 System.Web.UI.HtmlControls.HtmlGenericControl sub_div_name = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
                 System.Web.UI.HtmlControls.HtmlGenericControl sub_div_q = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
                 System.Web.UI.HtmlControls.HtmlGenericControl sub_div_t = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+                System.Web.UI.HtmlControls.HtmlGenericControl sub_div_ = new System.Web.UI.HtmlControls.HtmlGenericControl("HR");
                 sub_div_name.InnerText = detail.get_product_name();
                 sub_div_q.InnerText = detail.get_quantity_display();
                 sub_div_t.InnerText = detail.get_sub_total_display();
@@ -132,6 +199,7 @@ namespace EStore2.Backend
                 div.Controls.Add(sub_div_name);
                 div.Controls.Add(sub_div_q);
                 div.Controls.Add(sub_div_t);
+                div.Controls.Add(sub_div_);
             }
 
             return div;
@@ -169,17 +237,9 @@ namespace EStore2.Backend
             return amt.ToString();
         }
 
-       public List<System.Web.UI.HtmlControls.HtmlGenericControl> generate_cart_summary_product_breakout(string user_id, Button del_from_cart)
+       public System.Web.UI.HtmlControls.HtmlGenericControl generate_cart_summary_product_breakout(int i, CART_INFORMATION data)
         {
-            Process_Executor exec = new Process_Executor();
-            List<System.Web.UI.HtmlControls.HtmlGenericControl> all_prod_display = new List<System.Web.UI.HtmlControls.HtmlGenericControl>();
-            List<CART_INFORMATION> data_list = exec.retrieve_cart_data("not_his", user_id);
-            int i = 0;
-            foreach (CART_INFORMATION data in data_list)
-            {
-
-                i++;
-
+            
                 System.Web.UI.HtmlControls.HtmlGenericControl newdiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
                 newdiv.Attributes.Add("Style", "border:1px; border-color:blue; padding-bottom:2%");
                 newdiv.Attributes.Add("class", "col-md-4");
@@ -197,10 +257,10 @@ namespace EStore2.Backend
                 avail_amt_host.ID = "amt_avail" + i.ToString() + "_" + data.get_cart_id();
                 avail_amt_host.Attributes.Add("runat", "server");
 
-                //configuring the delete from cart button
-                del_from_cart.Text = "DELETE>>";
-                del_from_cart.CssClass = "btn btn-default";
-                del_from_cart.ID = "cart" + i.ToString() + "_" + data.get_cart_id();
+            //configuring the delete from cart button
+            delete_from_cart.Text = "DELETE>>";
+            delete_from_cart.CssClass = "btn btn-default";
+            delete_from_cart.ID = "cart" + i.ToString() + "_" + data.get_cart_id();
 
 
                 newdiv.InnerHtml = prod_image + prod_name + price + description;
@@ -227,12 +287,9 @@ namespace EStore2.Backend
                 avail_host.Controls.Add(avail_amt_host);
                 newdiv.Controls.Add(avail_host);
                 newdiv.Controls.Add(quan_host);
-                newdiv.Controls.Add(del_from_cart);
+                newdiv.Controls.Add(delete_from_cart);
 
-                all_prod_display.Add(newdiv);//adding each product element to the list 
-            }
-
-            return all_prod_display;//returning all the product that will be displaying 
+            return newdiv;//returning all the product that will be displaying 
         }
 
     }

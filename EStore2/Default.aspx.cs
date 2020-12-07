@@ -1,4 +1,5 @@
 ﻿using EStore2.Backend;
+using EStore2.Backend.Data_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,46 +19,89 @@ namespace EStore2
             HttpCookie cookie = Request.Cookies["user_id"];//getting the user_id 
             List<System.Web.UI.HtmlControls.HtmlGenericControl> element_list = new List<System.Web.UI.HtmlControls.HtmlGenericControl>();
 
-            //declaring default buttons 
-            Button add_button = new Button();
-            Button del_button = new Button();
-            Button clear_button = new Button();
-            Button addq_button = new Button();
-            Button lessenq_button = new Button();
-
-            //adding the respective events to the specific button
-            addq_button.Click += new EventHandler(increased_quantity);
-            lessenq_button.Click += new EventHandler(decreased_quantity);
 
             if (cookie != null)//check if the cookie exists
             {
-                //the page builder
-                PageElementGenerator peg = new PageElementGenerator(add_button, clear_button, del_button,addq_button, lessenq_button);
 
                 if (cookie.Value != "0")
                 {
-                    //adding the respective events to the specific button
-                    add_button.Click += new EventHandler(add_to_cart);
+                   
 
                     //retrieving all the elements
-                    element_list = peg.generate_products("", cookie.Value);
+                    Process_Executor exec = new Process_Executor();
+                    List<System.Web.UI.HtmlControls.HtmlGenericControl> all_prod_display = new List<System.Web.UI.HtmlControls.HtmlGenericControl>();
+                    List<PRODUTCT_DATA> data_list = exec.retrieve_product("", cookie.Value);
+
+                    foreach (PRODUTCT_DATA data in data_list)
+                    {
+                        //the page builder
+                        PageElementGenerator peg = new PageElementGenerator();
+
+                        //declaring default buttons 
+                        Button add_button = peg.get_add_to_cart();
+                        Button del_button = peg.get_delete_from_cart();
+                        Button clear_button = new Button();
+                        Button addq_button = peg.get_add_qauntity();
+                        Button lessenq_button = peg.get_lessen_quantity();
+
+
+                        //adding the respective events to the specific button
+                        addq_button.Click += new EventHandler(increased_quantity);
+                        lessenq_button.Click += new EventHandler(decreased_quantity);
+
+                        peg.set_add_qauntity(addq_button);
+
+                        peg.set_lessen_qauntity(lessenq_button);
+
+                        //adding the respective events to the specific button
+                        add_button.Click += new EventHandler(add_to_cart);
+
+                        peg.set_add_to_cart(add_button);
+
+                        maindiv.Controls.Add(peg.generate_product(data));//adding each product element to the list 
+                    }
                 }
                 else
                 {
-                    //adding the respective events to the specific button
-                    add_button.Click += new EventHandler(login_transfer);
+                   
 
                     //getting page element the default way 
-                    element_list = peg.generate_products("", "");
-                  
+                    Process_Executor exec = new Process_Executor();
+                    List<System.Web.UI.HtmlControls.HtmlGenericControl> all_prod_display = new List<System.Web.UI.HtmlControls.HtmlGenericControl>();
+                    List<PRODUTCT_DATA> data_list = exec.retrieve_product("", "");
+
+                    foreach (PRODUTCT_DATA data in data_list)
+                    {
+
+                        //the page builder
+                        PageElementGenerator peg = new PageElementGenerator();
+
+                        Button addq_button = peg.get_add_qauntity();
+                        Button lessenq_button = peg.get_lessen_quantity();
+                        Button add_button = peg.get_add_to_cart();
+
+                        //adding the respective events to the specific button
+                        add_button.Click += new EventHandler(login_transfer);
+                        //adding the respective events to the specific button
+                        addq_button.Click += new EventHandler(increased_quantity);
+                        lessenq_button.Click += new EventHandler(decreased_quantity);
+
+                        peg.set_add_qauntity(addq_button);
+
+                        peg.set_lessen_qauntity(lessenq_button);
+                        peg.set_add_to_cart(add_button);
+
+                        maindiv.Controls.Add(peg.generate_product(data));//adding each product element to the list 
+                    }
+
                 }
             }
 
-            //adding each element to the page
-            foreach(System.Web.UI.HtmlControls.HtmlGenericControl element in element_list)
-            {
-                maindiv.Controls.Add(element);
-            }
+            ////adding each element to the page
+            //foreach(System.Web.UI.HtmlControls.HtmlGenericControl element in element_list)
+            //{
+            //    maindiv.Controls.Add(element);
+            //}
 
         }
 

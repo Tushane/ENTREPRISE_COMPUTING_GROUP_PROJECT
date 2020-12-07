@@ -1,4 +1,5 @@
 ﻿using EStore2.Backend;
+using EStore2.Backend.Data_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,31 +16,40 @@ namespace EStore2.CART_DATA
             HttpCookie cookie = Request.Cookies["user_id"];//getting the user_id 
             List<System.Web.UI.HtmlControls.HtmlGenericControl> element_list = new List<System.Web.UI.HtmlControls.HtmlGenericControl>();
 
-
-            //declaring default buttons 
-            Button del_button = new Button();
-
-            del_button.Click += delete_from_cart;
-
             if (cookie != null)//check if the cookie exists
             {
-                //init the page builder
-                PageElementGenerator peg = new PageElementGenerator(del_button);
 
-                //retrieving the breakout elements 
-                element_list = peg.generate_cart_summary_product_breakout(cookie.Value, del_button);
+                //init the page builder
+                PageElementGenerator peg = new PageElementGenerator();
+
+                //adding each cart breakout element to the page
+                Process_Executor exec = new Process_Executor();
+                List<System.Web.UI.HtmlControls.HtmlGenericControl> all_prod_display = new List<System.Web.UI.HtmlControls.HtmlGenericControl>();
+                List<CART_INFORMATION> data_list = exec.retrieve_cart_data("not_his", cookie.Value);
+
+                int i = 0;
+                foreach (CART_INFORMATION data in data_list)
+                {
+                    i++;
+                  //init the page builder
+                    PageElementGenerator pe1 = new PageElementGenerator();
+
+                    //declaring default buttons 
+                    Button del_button = pe1.get_delete_from_cart();
+
+                    del_button.Click += delete_from_cart;
+
+                    pe1.set_delete_from_cart(del_button);
+
+                    maindiv.Controls.Add(pe1.generate_cart_summary_product_breakout(i, data));
+                }
+                
 
                 //retrieving and updating the cart summary section
                 PlaceHolder1.Controls.Add(peg.generate_cart_summary(cookie.Value));
                 Total_Q.Text = peg.generate_cart_summary_total_quantity(cookie.Value);
                 Total_Balance.Text = peg.generate_cart_summary_total_balance(cookie.Value);
 
-            }
-
-            //adding each cart breakout element to the page
-            foreach (System.Web.UI.HtmlControls.HtmlGenericControl element in element_list)
-            {
-                maindiv.Controls.Add(element);
             }
 
         }

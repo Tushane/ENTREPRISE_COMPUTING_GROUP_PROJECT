@@ -8,12 +8,12 @@
             <asp:PlaceHolder ID ="maindiv" runat="server">    </asp:PlaceHolder>
             <div runat="server" id ="error"></div>
         </div>
-        <div style ="flex :0.4; background:grey; opacity:0.8; width:100%; height:400px">
+        <div style ="flex :0.4; background:grey; opacity:0.8; width:100%; color:white">
             <div class="row" style ="display:flex">
                 <asp:Label runat="server" CssClass="col-md-2 control-label" style="width:100%; font-size:200%; color:white; display:block">ORDER SUMMARY</asp:Label>
             </div>
             <hr />
-            <div style="margin-left:2%; margin-top:2%; width:100%" >
+            <div style="margin-left:2%; margin-top:2%; width:100%; font-size:120%" >
                  <asp:PlaceHolder ID ="PlaceHolder1" runat="server">    </asp:PlaceHolder>
                 <hr />
                 <div style="width:160%">
