@@ -11,7 +11,7 @@ namespace EStore2.CART_DATA
 {
 
 
-    public partial class CART_INFO
+    public partial class CONFIRM_ORDER
     {
 
         /// <summary>
@@ -24,15 +24,6 @@ namespace EStore2.CART_DATA
         protected global::System.Web.UI.WebControls.PlaceHolder maindiv;
 
         /// <summary>
-        /// error control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl error;
-
-        /// <summary>
         /// PlaceHolder1 control.
         /// </summary>
         /// <remarks>
@@ -40,23 +31,5 @@ namespace EStore2.CART_DATA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
-
-        /// <summary>
-        /// Total_Q control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Total_Q;
-
-        /// <summary>
-        /// Total_Balance control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Total_Balance;
     }
 }

@@ -78,8 +78,9 @@ namespace EStore2
             //cehcking to see if the process of adding to cart is completed
             if(response == "SUCCESSFULLY_ADDED_TO_CART")
             {
-                System.Web.UI.HtmlControls.HtmlGenericControl temp = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("cart_amount");
-                temp.InnerText = exec.cart_items_count(cookie.Value); 
+                //System.Web.UI.HtmlControls.HtmlGenericControl temp = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("cart_amount");
+                //temp.InnerText ='' 
+                Response.Redirect("~/");
             }
         }
 

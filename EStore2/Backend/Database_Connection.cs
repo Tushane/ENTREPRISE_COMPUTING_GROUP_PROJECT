@@ -25,7 +25,7 @@ namespace EStore2.Backend
         //procedure executor determines what access a user should get
         public string ExecuteProcedure(string prod_name, string variables, string user_id)
         {
-            SqlCommand cmd = Get_Sql_Command(prod_name, variables.Split('|'));
+            SqlCommand cmd = Get_Sql_Command(prod_name, variables.Split('-'));
             this.con = UserType(user_id);
             this.con.Open();
             cmd.Connection = con;
@@ -113,7 +113,7 @@ namespace EStore2.Backend
             foreach (string variable in variable_list)
             {
                 string[] var = variable.Split(';');
-                cmd.Parameters.AddWithValue(var[0], var[1]);
+                cmd.Parameters.AddWithValue(var[0], var[1].Replace(':', '-'));
             }
 
             return cmd;
@@ -123,7 +123,7 @@ namespace EStore2.Backend
         private SqlConnection UserType(string user_id)
         {
             string prod_name = "Get_User_Type";
-            string variable = "@user_id;" + user_id + "|";
+            string variable = "@user_id;" + user_id;
 
            string response = ExecuteProcedure(prod_name, variable);
 
@@ -138,6 +138,18 @@ namespace EStore2.Backend
             }
 
             return con_i;
+        }
+
+
+        //function that handles getting the user type 
+        public string get_user_type(string user_id)
+        {
+            string prod_name = "Get_User_Type";
+            string variable = "@user_id;" + user_id;
+
+            string response = ExecuteProcedure(prod_name, variable);
+
+            return response;
         }
 
     }

@@ -66,7 +66,8 @@
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/About">About Us</a></li>
                         <li><a runat="server" href="~/Contact">Contact Us</a></li>
-                        <li><a runat= "server" id ="cart" href="~/Contact">Cart History</a></li>
+                        <li><a runat= "server" id ="cart" href="~/CART_DATA/CART_HIST">Cart History</a></li>
+                         <li><a runat= "server" id ="add_prod" href="~/CART_DATA/ADD_PRODUCT" visible ="false">Add Product to Website</a></li>
                     </ul>
                     <div runat="server">
                         <div id ="logout_state" runat="server">

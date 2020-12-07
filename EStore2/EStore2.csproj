@@ -166,7 +166,10 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="CART_DATA\ADD_PRODUCT.aspx" />
+    <Content Include="CART_DATA\CART_HIST.aspx" />
     <Content Include="CART_DATA\CART_INFO.aspx" />
+    <Content Include="CART_DATA\CONFIRM_ORDER.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -343,15 +346,40 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Backend\Database_Connection.cs" />
     <Compile Include="Backend\Data_Models\CART_INFORMATION.cs" />
+    <Compile Include="Backend\Data_Models\CART_INFO_SUMMARY.cs" />
     <Compile Include="Backend\Data_Models\PRODUTCT_DATA.cs" />
+    <Compile Include="Backend\Data_Models\USER_ADDRESS_DETAIL.cs" />
+    <Compile Include="Backend\Data_Models\USER_CARD_INFO.cs" />
+    <Compile Include="Backend\Data_Models\USER_SHIPPING_INFO.cs" />
     <Compile Include="Backend\PageElementGenerator.cs" />
     <Compile Include="Backend\Process_Executor.cs" />
+    <Compile Include="CART_DATA\ADD_PRODUCT.aspx.cs">
+      <DependentUpon>ADD_PRODUCT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CART_DATA\ADD_PRODUCT.aspx.designer.cs">
+      <DependentUpon>ADD_PRODUCT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CART_DATA\CART_HIST.aspx.cs">
+      <DependentUpon>CART_HIST.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CART_DATA\CART_HIST.aspx.designer.cs">
+      <DependentUpon>CART_HIST.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CART_DATA\CART_INFO.aspx.cs">
       <DependentUpon>CART_INFO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CART_DATA\CART_INFO.aspx.designer.cs">
       <DependentUpon>CART_INFO.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CART_DATA\CONFIRM_ORDER.aspx.cs">
+      <DependentUpon>CONFIRM_ORDER.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CART_DATA\CONFIRM_ORDER.aspx.designer.cs">
+      <DependentUpon>CONFIRM_ORDER.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

@@ -73,6 +73,8 @@ namespace EStore2
 
             HttpCookie cookie = Request.Cookies["user_id"];//getting the user_id 
 
+            Database_Connection con = new Database_Connection();
+
             //checking if the cookie exists and if it doesn't to create it 
             if (cookie == null) {
 
@@ -87,13 +89,16 @@ namespace EStore2
 
             }
 
+            //checking if the user is an default user or custom user and update the UI appropraitely 
             if (cookie.Value == "0")
             {
                 cart.Visible = false;
                 carts.HRef = "";
                 cart_amount.HRef = "";
-               
-            }else
+                add_prod.Visible = false;
+
+            }
+            else
             {
                 Process_Executor exec = new Process_Executor();
                 cart.Visible = true;
@@ -102,7 +107,21 @@ namespace EStore2
                 user.InnerText = "Hello, " + exec.get_user_name(cookie.Value);
                 login_state.Visible = true;
                 logout_state.Visible = false;
+                cart_amount.InnerText = exec.cart_items_count(cookie.Value);
+
+
+                //checking if the user is an admin user to unlock the admin functionality appropriately
+                if (exec.get_user_type(cookie.Value) == "ADMIN")
+                {
+                    add_prod.Visible = true;
+                }
+                else
+                {
+                    add_prod.Visible = false;
+                }
+
             }
+
         }
 
         private void Unnamed_LoggingOut()

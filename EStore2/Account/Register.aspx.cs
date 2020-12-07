@@ -6,31 +6,38 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using EStore2.Models;
+using EStore2.Backend;
 
 namespace EStore2.Account
 {
     public partial class Register : Page
     {
+
+        private static string password;
+
         protected void CreateUser_Click(object sender, EventArgs e)
         {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
-            IdentityResult result = manager.Create(user, Password.Text);
-            if (result.Succeeded)
-            {
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                //string code = manager.GenerateEmailConfirmationToken(user.Id);
-                //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-                //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
 
-                signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-            }
-            else 
+            Process_Executor exec = new Process_Executor();
+
+            password = Password.Text;
+
+          string response = exec.User_Creation(Email.Text, Username.Text, FirstName.Text, MiddleName.Text, LastName.Text, PhoneNo.Text, password);
+
+           if (response == "User Creation Sucessful")
             {
-                ErrorMessage.Text = result.Errors.FirstOrDefault();
+                response = exec.User_Address_Insertion
+                    (   
+                        (FirstName.Text + " " + MiddleName.Text + " " + LastName.Text), Username.Text,  password,
+                        Street_No.Text, City.Text, State_of_Business.Text, Country.Text, Zip.Text
+                    );
+
+                if (response == "COMPLETED")
+                {
+                    Response.Redirect("~/Account/Login");
+                }
             }
+
         }
     }
 }
